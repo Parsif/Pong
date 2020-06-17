@@ -1,4 +1,4 @@
-OBJECTS = src/main.cpp src/Game.cpp src/utils/Logger.cpp
+OBJECTS = src/main.cpp src/Game.cpp src/utils/Logger.cpp src/Field.cpp
 INCLUDE_PATHS = -IDependencies/SDL2/include
 LIBRARY_PATHS = -LDependencies/SDL2/lib
 
@@ -17,4 +17,6 @@ build: $(OBJECTS)
 	g++ $(OBJECTS) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LIBRARY_NAMES) $(OUTPUT)
 
 run:
-	bin/Pong	
+	bin/Pong
+
+

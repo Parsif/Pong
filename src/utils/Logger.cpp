@@ -11,6 +11,5 @@ namespace Pong
     {
         std::cerr << error_message << '\n';
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, SDL_GetError());
-        throw std::exception();
     }
 } // namespace Pong

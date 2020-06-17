@@ -16,14 +16,19 @@ namespace Pong
         {
             HandleInput();
             Render();
+            Update();
         }
         Shutdown();
     }
 
     void Game::Render()
     {
-        SDL_RenderClear(renderer);
-        SDL_RenderPresent(renderer);
+        field->Draw();
+    }
+
+    void Game::Update()
+    {
+        SDL_RenderPresent(renderer_);
     }
 
     void Game::HandleInput()
@@ -35,6 +40,13 @@ namespace Pong
             {
             case SDL_QUIT:
                 is_running_ = false;
+                break;
+
+            case SDL_WINDOWEVENT:
+                if (event.window.event == SDL_WINDOWEVENT_RESIZED)
+                {
+                }
+
                 break;
 
             default:
@@ -49,27 +61,27 @@ namespace Pong
         {
             Logger::LogoutError("SDL init error");
         }
-        window = SDL_CreateWindow(window_params.title, window_params.x_pos, window_params.y_pos, window_params.width, window_params.height, 0);
-
-        if (window == nullptr)
+        window_ = SDL_CreateWindow(window_params.title, window_params.x_pos, window_params.y_pos,
+                                   window_params.width, window_params.height, SDL_WINDOW_RESIZABLE);
+        if (window_ == nullptr)
         {
             Logger::LogoutError("window creation error");
         }
 
-        renderer = SDL_CreateRenderer(window, -1, 0);
-        if (renderer == nullptr)
+        renderer_ = SDL_CreateRenderer(window_, -1, 0);
+        if (renderer_ == nullptr)
         {
-            Logger::LogoutError("Renderer creation error");
+            Logger::LogoutError("Fail to init renderer");
         }
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
+        field = new Field(window_, renderer_);
         is_running_ = true;
     }
 
     void Game::Shutdown() const
     {
-        SDL_DestroyWindow(window);
-        SDL_DestroyRenderer(renderer);
+
+        SDL_DestroyWindow(window_);
         SDL_Quit();
     }
 } // namespace Pong

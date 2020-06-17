@@ -1,10 +1,16 @@
+#pragma once
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 
-class FileManager
+namespace Pong
 {
-private:
-public:
-    FileManager();
-    ~FileManager();
-};
+
+    class FileManager
+    {
+    private:
+    public:
+        FileManager();
+        static SDL_Texture *LoadPngImg(const char *image);
+    };
+
+} // namespace Pong

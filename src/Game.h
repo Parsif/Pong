@@ -3,6 +3,8 @@
 
 #include "SDL2/SDL.h"
 
+#include "Field.h"
+
 namespace Pong
 {
 
@@ -18,10 +20,11 @@ namespace Pong
     class Game
     {
     private:
-        SDL_Window *window;
+        SDL_Window *window_;
         SDL_Surface *surface;
-        SDL_Renderer *renderer;
         WindowParams window_params;
+        SDL_Renderer *renderer_;
+        Field *field;
         bool is_running_ = false;
 
     public:
@@ -31,6 +34,7 @@ namespace Pong
         void Initialize();
         void Shutdown() const;
         void HandleInput();
+        void Update();
     };
 
 } // namespace Pong
