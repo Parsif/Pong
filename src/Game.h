@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <memory>
 
 #include "SDL2/SDL.h"
 
@@ -24,7 +25,7 @@ namespace Pong
         SDL_Surface *surface;
         WindowParams window_params;
         SDL_Renderer *renderer_;
-        Field *field;
+        std::unique_ptr<Field> field_;
         bool is_running_ = false;
 
     public:

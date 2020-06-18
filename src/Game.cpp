@@ -23,7 +23,7 @@ namespace Pong
 
     void Game::Render()
     {
-        field->Draw();
+        field_->Draw();
     }
 
     void Game::Update()
@@ -59,6 +59,7 @@ namespace Pong
     {
         if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
         {
+
             Logger::LogoutError("SDL init error");
         }
         window_ = SDL_CreateWindow(window_params.title, window_params.x_pos, window_params.y_pos,
@@ -74,13 +75,12 @@ namespace Pong
             Logger::LogoutError("Fail to init renderer");
         }
 
-        field = new Field(window_, renderer_);
+        field_ = std::make_unique<Field>(window_, renderer_);
         is_running_ = true;
     }
 
     void Game::Shutdown() const
     {
-
         SDL_DestroyWindow(window_);
         SDL_Quit();
     }
