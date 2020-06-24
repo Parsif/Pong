@@ -1,7 +1,9 @@
 ifeq ($(OS), Windows_NT)
 	LIBRARY_NAMES = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+	CLEAN_COMMAND = del ".\build\*.o"
 else
 	LIBRARY_NAMES = -lSDL2 -lSDL2_image
+	CLEAN_COMMAND = rm build/*.o
 endif
 
 OBJECTS = src/main.cpp src/Game.cpp src/utils/Logger.cpp src/Field.cpp
@@ -18,11 +20,13 @@ GAME_O = build/Game.o
 LOGGER_O = build/Logger.o
 FIELD_O = build/Field.o
 PLAYER_O = build/Player.o
+HUMAN_PLAYER_O = build/HumanPlayer.o
+
 
 all: build run
 
-build: $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O)
-	$(CC) $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LIBRARY_NAMES) $(OUTPUT)
+build: $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O)
+	$(CC) $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LIBRARY_NAMES) $(OUTPUT)
 
 $(MAIN_O): src/main.cpp
 	$(CC) $(INCLUDE_PATHS) -c src/main.cpp -o $(MAIN_O)
@@ -39,10 +43,11 @@ $(FIELD_O): src/Field.cpp
 $(PLAYER_O): src/Player.cpp
 	$(CC) $(INCLUDE_PATHS) -c src/Player.cpp -o $(PLAYER_O)
 
-
+$(HUMAN_PLAYER_O): src/HumanPlayer.cpp
+	$(CC) $(INCLUDE_PATHS) -c src/HumanPlayer.cpp -o $(HUMAN_PLAYER_O)
 
 clean:
-	del ".\build\*.o"
+	$(CLEAN_COMMAND)
 
 run:
 	bin/Pong

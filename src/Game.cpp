@@ -24,6 +24,7 @@ namespace Pong
     void Game::Render()
     {
         field_->Draw();
+        human_player_->Draw();
     }
 
     void Game::Update()
@@ -62,8 +63,8 @@ namespace Pong
 
             Logger::LogoutError("SDL init error");
         }
-        window_ = SDL_CreateWindow(window_params.title, window_params.x_pos, window_params.y_pos,
-                                   window_params.width, window_params.height, SDL_WINDOW_RESIZABLE);
+        window_ = SDL_CreateWindow(window_params_.title, window_params_.x_pos, window_params_.y_pos,
+                                   window_params_.width, window_params_.height, SDL_WINDOW_RESIZABLE);
         if (window_ == nullptr)
         {
             Logger::LogoutError("window creation error");
@@ -76,6 +77,7 @@ namespace Pong
         }
 
         field_ = std::make_unique<Field>(window_, renderer_);
+        human_player_ = std::make_unique<HumanPlayer>(window_, renderer_);
         is_running_ = true;
     }
 

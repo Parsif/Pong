@@ -9,11 +9,6 @@ namespace Pong
     {
     }
 
-    Field::~Field()
-    {
-        SDL_DestroyRenderer(renderer_);
-    }
-
     void Field::Draw()
     {
         DrawBackground();
@@ -28,13 +23,21 @@ namespace Pong
 
     void Field::DrawSepLine()
     {
-        SDL_Rect separotor_line_rect;
-        SDL_GetWindowSize(window_, &separotor_line_rect.w, &separotor_line_rect.h);
-        separotor_line_rect.x = separotor_line_rect.w / 2 - (separotor_line_rect.w / 40);
-        separotor_line_rect.y = 0;
-        separotor_line_rect.w /= 40;
+        OnWindowResize();
         SDL_SetRenderDrawColor(renderer_, 255, 255, 255, 255);
-        SDL_RenderFillRect(renderer_, &separotor_line_rect);
+        SDL_RenderFillRect(renderer_, &separotor_line_rect_);
+    }
+
+    void Field::OnWindowResize()
+    {
+        constexpr int scale_width = 100;
+        int window_width, window_height;
+        SDL_GetWindowSize(window_, &window_width, &window_height);
+
+        separotor_line_rect_.h = window_height;
+        separotor_line_rect_.w = window_width / scale_width;
+        separotor_line_rect_.x = window_width / 2 - separotor_line_rect_.w;
+        separotor_line_rect_.y = 0;
     }
 
 } // namespace Pong
