@@ -16,3 +16,8 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+
+TODO:
+    // 1: Fix onResize players position issue
+    // 2: Draw and move ball;
+    // 3: Add collision feature
