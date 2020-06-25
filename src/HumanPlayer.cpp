@@ -8,17 +8,23 @@ namespace Pong
     {
     }
 
-    void HumanPlayer::Move(MoveSpeed move_speed)
+    void HumanPlayer::MoveUp()
     {
         int window_width, window_height;
         SDL_GetWindowSize(window_, &window_width, &window_height);
-        if (rect_.y + rect_.h + move_speed  >= window_height && move_speed == MoveSpeed::DOWN ||
-            rect_.y + move_speed <= 0 && move_speed == MoveSpeed::UP)
+        if (rect_.y - SPEED_ >= 0)
         {
-            return;
+            rect_.y -= SPEED_;
         }
+    }
 
-        
-        rect_.y += move_speed;
+    void HumanPlayer::MoveDown()
+    {
+        int window_width, window_height;
+        SDL_GetWindowSize(window_, &window_width, &window_height);
+        if (rect_.y + rect_.h + SPEED_ <= window_height)
+        {
+            rect_.y += SPEED_;
+        }
     }
 } // namespace Pong

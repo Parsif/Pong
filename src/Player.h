@@ -7,15 +7,10 @@ namespace Pong
     class Player
     {
     public:
-        enum MoveSpeed
-        {
-            UP = -20,
-            DOWN = 20,
-            STAY = 0
-        };
         void Draw();
         void OnWindowResize();
-        virtual void Move(MoveSpeed move_speed) = 0;
+        virtual void MoveUp() = 0;
+        virtual void MoveDown() = 0;
 
     protected:
         Player(SDL_Window *window, SDL_Renderer *renderer);
@@ -25,6 +20,10 @@ namespace Pong
         SDL_Rect rect_;
         SDL_Window *window_;
         SDL_Renderer *renderer_;
+        const int SPEED_ = 20;
+
+    private:
+        void SetRect();
     };
 
 } // namespace Pong

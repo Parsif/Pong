@@ -54,17 +54,13 @@ namespace Pong
             case SDL_KEYDOWN:
                 if (event.key.keysym.scancode == SDL_SCANCODE_UP)
                 {
-                    human_player_->Move(HumanPlayer::MoveSpeed::UP);
+                    human_player_->MoveUp();
                 }
                 else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN)
                 {
-                    human_player_->Move(HumanPlayer::MoveSpeed::DOWN);
+                    human_player_->MoveDown();
                 }
-                break;
-
-            // case SDL_KEYUP:
-            //     human_player_->Move(HumanPlayer::MoveSpeed::STAY);
-            //     break;
+                break; 
 
             default:
                 break;

@@ -7,7 +7,7 @@ namespace Pong
 
     Field::Field(SDL_Window *window, SDL_Renderer *renderer) : window_(window), renderer_(renderer)
     {
-        OnWindowResize(); // fix this call
+        SetSepLineRect();
     }
 
     void Field::Draw()
@@ -29,6 +29,11 @@ namespace Pong
     }
 
     void Field::OnWindowResize()
+    {
+        SetSepLineRect();
+    }
+
+    void Field::SetSepLineRect()
     {
         constexpr int scale_width = 100;
         int window_width, window_height;
