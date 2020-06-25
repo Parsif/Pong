@@ -7,6 +7,7 @@ namespace Pong
     private:
         const float RADIUS_ = 10.0f;
 
+    
     public:
         Ball();
         void OnWindowResize();

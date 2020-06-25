@@ -6,6 +6,7 @@ namespace Pong
 {
     HumanPlayer::HumanPlayer(SDL_Window *window, SDL_Renderer *renderer) : Player(window, renderer)
     {
+        SetRect();
     }
 
     void HumanPlayer::MoveUp()
@@ -26,5 +27,22 @@ namespace Pong
         {
             rect_.y += SPEED_;
         }
+    }
+
+    void HumanPlayer::SetRect()
+    {
+        int window_width, window_height;
+        SDL_GetWindowSize(window_, &window_width, &window_height);
+
+        constexpr int scale_width = 100, scale_height = 5;
+        rect_.h = window_height / scale_height;
+        rect_.w = window_width / scale_width;
+        rect_.x = window_width - window_width * 0.9; // TODO: fix magic number
+        rect_.y = window_height * 2 / scale_height;  // TODO: fix magic number
+    }
+
+    void HumanPlayer::OnWindowResize()
+    {
+        SetRect();
     }
 } // namespace Pong

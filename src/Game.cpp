@@ -25,6 +25,7 @@ namespace Pong
     {
         field_->Draw();
         human_player_->Draw();
+        ai_player_->Draw();
     }
 
     void Game::Update()
@@ -48,6 +49,7 @@ namespace Pong
                 {
                     field_->OnWindowResize();
                     human_player_->OnWindowResize();
+                    ai_player_->OnWindowResize();
                 }
                 break;
 
@@ -60,7 +62,7 @@ namespace Pong
                 {
                     human_player_->MoveDown();
                 }
-                break; 
+                break;
 
             default:
                 break;
@@ -90,6 +92,8 @@ namespace Pong
 
         field_ = std::make_unique<Field>(window_, renderer_);
         human_player_ = std::make_unique<HumanPlayer>(window_, renderer_);
+        ai_player_ = std::make_unique<AIPlayer>(window_, renderer_);
+
         is_running_ = true;
     }
 

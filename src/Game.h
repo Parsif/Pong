@@ -6,6 +6,7 @@
 
 #include "Field.h"
 #include "HumanPlayer.h"
+#include "AIPlayer.h"
 
 namespace Pong
 {
@@ -28,6 +29,8 @@ namespace Pong
         SDL_Renderer *renderer_;
         std::unique_ptr<Field> field_;
         std::unique_ptr<HumanPlayer> human_player_;
+        std::unique_ptr<AIPlayer> ai_player_;
+
         bool is_running_ = false;
 
     public:
