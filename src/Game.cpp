@@ -46,9 +46,25 @@ namespace Pong
             case SDL_WINDOWEVENT:
                 if (event.window.event == SDL_WINDOWEVENT_RESIZED)
                 {
+                    field_->OnWindowResize();
+                    human_player_->OnWindowResize();
                 }
-
                 break;
+
+            case SDL_KEYDOWN:
+                if (event.key.keysym.scancode == SDL_SCANCODE_UP)
+                {
+                    human_player_->Move(HumanPlayer::MoveSpeed::UP);
+                }
+                else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN)
+                {
+                    human_player_->Move(HumanPlayer::MoveSpeed::DOWN);
+                }
+                break;
+
+            // case SDL_KEYUP:
+            //     human_player_->Move(HumanPlayer::MoveSpeed::STAY);
+            //     break;
 
             default:
                 break;

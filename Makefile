@@ -21,12 +21,14 @@ LOGGER_O = build/Logger.o
 FIELD_O = build/Field.o
 PLAYER_O = build/Player.o
 HUMAN_PLAYER_O = build/HumanPlayer.o
+AI_PLAYER_O = build/AIPlayer.o
+BALL_O = build/Ball.o
 
 
 all: build run
 
-build: $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O)
-	$(CC) $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LIBRARY_NAMES) $(OUTPUT)
+build: $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(AI_PLAYER_O) $(BALL_O)
+	$(CC) $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(AI_PLAYER_O) $(BALL_O) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LIBRARY_NAMES) $(OUTPUT)
 
 $(MAIN_O): src/main.cpp
 	$(CC) $(INCLUDE_PATHS) -c src/main.cpp -o $(MAIN_O)
@@ -45,6 +47,12 @@ $(PLAYER_O): src/Player.cpp
 
 $(HUMAN_PLAYER_O): src/HumanPlayer.cpp
 	$(CC) $(INCLUDE_PATHS) -c src/HumanPlayer.cpp -o $(HUMAN_PLAYER_O)
+
+$(AI_PLAYER_O): src/AIPlayer.cpp
+	$(CC) $(INCLUDE_PATHS) -c src/AIPlayer.cpp -o $(AI_PLAYER_O)
+
+$(BALL_O): src/Ball.cpp
+	$(CC) $(INCLUDE_PATHS) -c src/Ball.cpp -o $(BALL_O)
 
 clean:
 	$(CLEAN_COMMAND)

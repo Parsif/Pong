@@ -7,8 +7,7 @@ namespace Pong
     {
     public:
         HumanPlayer(SDL_Window *window, SDL_Renderer *renderer);
+        void Move(MoveSpeed move_speed) override;
 
-    private:
-        void Move() override;
     };
 } // namespace Pong

@@ -7,6 +7,7 @@ namespace Pong
 
     Field::Field(SDL_Window *window, SDL_Renderer *renderer) : window_(window), renderer_(renderer)
     {
+        OnWindowResize(); // fix this call
     }
 
     void Field::Draw()
@@ -23,7 +24,6 @@ namespace Pong
 
     void Field::DrawSepLine()
     {
-        OnWindowResize();
         SDL_SetRenderDrawColor(renderer_, 255, 255, 255, 255);
         SDL_RenderFillRect(renderer_, &separotor_line_rect_);
     }
