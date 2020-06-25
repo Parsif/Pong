@@ -17,8 +17,8 @@ namespace Pong
         struct WindowParams
         {
             const char *title = "Pong";
-            int width = 480;
-            int height = 480;
+            int min_width = 480;
+            int min_height = 480;
             int x_pos = 200;
             int y_pos = 200;
         };

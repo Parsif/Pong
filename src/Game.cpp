@@ -78,11 +78,13 @@ namespace Pong
             Logger::LogoutError("SDL init error");
         }
         window_ = SDL_CreateWindow(window_params_.title, window_params_.x_pos, window_params_.y_pos,
-                                   window_params_.width, window_params_.height, SDL_WINDOW_RESIZABLE);
+                                   window_params_.min_width, window_params_.min_height, SDL_WINDOW_RESIZABLE);
         if (window_ == nullptr)
         {
             Logger::LogoutError("window creation error");
         }
+
+        SDL_SetWindowMinimumSize(window_, window_params_.min_width, window_params_.min_height);
 
         renderer_ = SDL_CreateRenderer(window_, -1, 0);
         if (renderer_ == nullptr)
