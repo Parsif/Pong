@@ -10,17 +10,19 @@ namespace Pong
         void Draw();
         virtual void MoveUp() = 0;
         virtual void MoveDown() = 0;
-        virtual void OnWindowResize() = 0;
+        void OnWindowResize();
 
     protected:
         Player(SDL_Window *window, SDL_Renderer *renderer);
-        virtual void SetRect() = 0;
 
     protected:
         SDL_Rect rect_;
         SDL_Window *window_;
         SDL_Renderer *renderer_;
+
         const int SPEED_ = 20;
+        const int scale_width_ = 100, scale_height_ = 5;
+        float y_ratio, x_ratio; // TODO: try to fix this
     };
 
 } // namespace Pong

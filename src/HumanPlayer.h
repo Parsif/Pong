@@ -9,9 +9,6 @@ namespace Pong
         HumanPlayer(SDL_Window *window, SDL_Renderer *renderer);
         void MoveUp() override;
         void MoveDown() override;
-        void OnWindowResize() override;
         
-    private:
-        void SetRect() override;
     };
 } // namespace Pong

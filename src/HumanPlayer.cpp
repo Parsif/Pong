@@ -6,7 +6,16 @@ namespace Pong
 {
     HumanPlayer::HumanPlayer(SDL_Window *window, SDL_Renderer *renderer) : Player(window, renderer)
     {
-        SetRect();
+        int window_width, window_height;
+        SDL_GetWindowSize(window_, &window_width, &window_height);
+
+        rect_.h = window_height / scale_height_;
+        rect_.w = window_width / scale_width_;
+        rect_.x = window_width - window_width * 0.9; // TODO: fix magic number
+        rect_.y = window_height * 2 / scale_height_;  // TODO: fix magic number
+
+        x_ratio = rect_.x / static_cast<float>(window_width);
+        y_ratio = rect_.y / static_cast<float>(window_height);
     }
 
     void HumanPlayer::MoveUp()
@@ -17,6 +26,8 @@ namespace Pong
         {
             rect_.y -= SPEED_;
         }
+
+        y_ratio = rect_.y / static_cast<float>(window_height);
     }
 
     void HumanPlayer::MoveDown()
@@ -27,22 +38,10 @@ namespace Pong
         {
             rect_.y += SPEED_;
         }
+
+        y_ratio = rect_.y / static_cast<float>(window_height);
     }
 
-    void HumanPlayer::SetRect()
-    {
-        int window_width, window_height;
-        SDL_GetWindowSize(window_, &window_width, &window_height);
 
-        constexpr int scale_width = 100, scale_height = 5;
-        rect_.h = window_height / scale_height;
-        rect_.w = window_width / scale_width;
-        rect_.x = window_width - window_width * 0.9; // TODO: fix magic number
-        rect_.y = window_height * 2 / scale_height;  // TODO: fix magic number
-    }
-
-    void HumanPlayer::OnWindowResize()
-    {
-        SetRect();
-    }
+   
 } // namespace Pong
