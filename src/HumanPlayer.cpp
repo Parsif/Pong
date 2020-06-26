@@ -4,18 +4,8 @@
 
 namespace Pong
 {
-    HumanPlayer::HumanPlayer(SDL_Window *window, SDL_Renderer *renderer) : Player(window, renderer)
+    HumanPlayer::HumanPlayer(SDL_Window *window, SDL_Renderer *renderer) : Player(window, renderer, true)
     {
-        int window_width, window_height;
-        SDL_GetWindowSize(window_, &window_width, &window_height);
-
-        rect_.h = window_height / scale_height_;
-        rect_.w = window_width / scale_width_;
-        rect_.x = window_width - window_width * 0.9; // TODO: fix magic number
-        rect_.y = window_height * 2 / scale_height_;  // TODO: fix magic number
-
-        x_ratio = rect_.x / static_cast<float>(window_width);
-        y_ratio = rect_.y / static_cast<float>(window_height);
     }
 
     void HumanPlayer::MoveUp()
@@ -42,6 +32,4 @@ namespace Pong
         y_ratio = rect_.y / static_cast<float>(window_height);
     }
 
-
-   
 } // namespace Pong

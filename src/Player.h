@@ -13,7 +13,7 @@ namespace Pong
         void OnWindowResize();
 
     protected:
-        Player(SDL_Window *window, SDL_Renderer *renderer);
+        Player(SDL_Window *window, SDL_Renderer *renderer, bool located_left);
 
     protected:
         SDL_Rect rect_;
@@ -21,7 +21,7 @@ namespace Pong
         SDL_Renderer *renderer_;
 
         const int SPEED_ = 20;
-        const int scale_width_ = 100, scale_height_ = 5;
+        const int scale_width_ = 100, scale_height_ = 5; // TODO: try to fix this
         float y_ratio, x_ratio; // TODO: try to fix this
     };
 
