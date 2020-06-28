@@ -7,6 +7,7 @@
 #include "Field.h"
 #include "HumanPlayer.h"
 #include "AIPlayer.h"
+#include "Ball.h"
 
 namespace Pong
 {
@@ -30,6 +31,8 @@ namespace Pong
         std::unique_ptr<Field> field_;
         std::unique_ptr<HumanPlayer> human_player_;
         std::unique_ptr<AIPlayer> ai_player_;
+        std::unique_ptr<Ball> ball_;
+
 
         bool is_running_ = false;
 

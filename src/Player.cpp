@@ -19,8 +19,8 @@ namespace Pong
             rect_.x = window_width - window_width * 0.1 - rect_.w; // TODO: fix magic number
         }
 
-        x_ratio = rect_.x / static_cast<float>(window_width);
-        y_ratio = rect_.y / static_cast<float>(window_height);
+        x_ratio_ = rect_.x / static_cast<float>(window_width);
+        y_ratio_ = rect_.y / static_cast<float>(window_height);
     }
 
     void Player::Draw()
@@ -37,8 +37,8 @@ namespace Pong
         rect_.h = window_height / scale_height_;
         rect_.w = window_width / scale_width_;
 
-        rect_.x = window_width * x_ratio;  // TODO: fix magic number
-        rect_.y = window_height * y_ratio; // TODO: fix magic number
+        rect_.x = window_width * x_ratio_;  // TODO: fix magic number
+        rect_.y = window_height * y_ratio_; // TODO: fix magic number
     }
 
 } // namespace Pong

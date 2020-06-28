@@ -7,11 +7,10 @@ else
 endif
 
 OBJECTS = src/main.cpp src/Game.cpp src/utils/Logger.cpp src/Field.cpp
-INCLUDE_PATHS = -IDependencies/SDL2/include
-LIBRARY_PATHS = -LDependencies/SDL2/lib
+LIBRARY_PATHS = 
 
 COMPILER_FLAGS = -g -Wall
-INCLUDE_PATHS = -Isrc/utils
+INCLUDE_PATHS = -Isrc/utils 
 OUTPUT = -o bin/Pong
 CC = g++ 
 
@@ -28,10 +27,10 @@ BALL_O = build/Ball.o
 all: build run
 
 build: $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(AI_PLAYER_O) $(BALL_O)
-	$(CC) $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(AI_PLAYER_O) $(BALL_O) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LIBRARY_NAMES) $(OUTPUT)
+	$(CC) $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(AI_PLAYER_O) $(BALL_O) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LIBRARY_NAMES) $(OUTPUT)
 
 $(MAIN_O): src/main.cpp
-	$(CC) $(INCLUDE_PATHS) -c src/main.cpp -o $(MAIN_O)
+	$(CC) $(INCLUDE_PATHS) -c src/main.cpp -o $(MAIN_O) 
 
 $(GAME_O): src/Game.cpp
 	$(CC) $(INCLUDE_PATHS) -c src/Game.cpp -o $(GAME_O)

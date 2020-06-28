@@ -17,7 +17,7 @@ namespace Pong
             rect_.y -= SPEED_;
         }
 
-        y_ratio = rect_.y / static_cast<float>(window_height);
+        y_ratio_ = rect_.y / static_cast<float>(window_height);
     }
 
     void HumanPlayer::MoveDown()
@@ -29,7 +29,7 @@ namespace Pong
             rect_.y += SPEED_;
         }
 
-        y_ratio = rect_.y / static_cast<float>(window_height);
+        y_ratio_ = rect_.y / static_cast<float>(window_height);
     }
 
 } // namespace Pong

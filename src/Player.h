@@ -22,7 +22,7 @@ namespace Pong
 
         const int SPEED_ = 20;
         const int scale_width_ = 100, scale_height_ = 5; // TODO: try to fix this
-        float y_ratio, x_ratio; // TODO: try to fix this
+        float y_ratio_, x_ratio_; // TODO: try to fix this
     };
 
-} // namespace Pong
+} // namespace Pong 

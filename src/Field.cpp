@@ -41,7 +41,7 @@ namespace Pong
 
         separotor_line_rect_.h = window_height;
         separotor_line_rect_.w = window_width / scale_width;
-        separotor_line_rect_.x = window_width / 2 - separotor_line_rect_.w;
+        separotor_line_rect_.x = window_width / 2 - (separotor_line_rect_.w / 2);
         separotor_line_rect_.y = 0;
     }
 
