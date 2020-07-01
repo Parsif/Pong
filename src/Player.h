@@ -11,6 +11,7 @@ namespace Pong
         virtual void MoveUp() = 0;
         virtual void MoveDown() = 0;
         void OnWindowResize();
+        auto GetRect() const;
 
     protected:
         Player(SDL_Window *window, SDL_Renderer *renderer, bool located_left);

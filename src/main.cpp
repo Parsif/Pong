@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 }
 
 //TODO:
-// 1: Fix onResize players position issue
+// 1: Fix ball onResize
 // 2: Draw and move ball;
 // 3: Add collision feature
+// 4: Fix field class

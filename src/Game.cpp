@@ -12,8 +12,10 @@ namespace Pong
 
     void Game::Run()
     {
+
         while (is_running_)
         {
+         
             HandleInput();
             Render();
             Update();

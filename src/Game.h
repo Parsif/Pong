@@ -33,16 +33,19 @@ namespace Pong
         std::unique_ptr<AIPlayer> ai_player_;
         std::unique_ptr<Ball> ball_;
 
-
         bool is_running_ = false;
+        const int FRAME_RATE = 60;
 
-    public:
-        Game() noexcept;
+    private:
         void Run();
         void Render();
         void Initialize();
         void Shutdown() const;
         void HandleInput();
+    
+
+    public:
+        Game() noexcept;
         void Update();
     };
 
