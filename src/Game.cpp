@@ -12,13 +12,25 @@ namespace Pong
 
     void Game::Run()
     {
+        constexpr uint32_t FPS = 60;
+        constexpr uint32_t FRAME_DURATION = 1000 / FPS;
+        uint32_t current_frame_time = SDL_GetTicks();
+        uint32_t next_frame_time = 0;
 
         while (is_running_)
         {
-         
-            HandleInput();
-            Render();
-            Update();
+            if (current_frame_time >= next_frame_time)
+            {
+                ball_->Move();
+                HandleInput();
+                Render();
+                Update();
+                next_frame_time = current_frame_time + FRAME_DURATION;
+            }
+            else
+            {
+                current_frame_time = SDL_GetTicks();
+            }
         }
         Shutdown();
     }

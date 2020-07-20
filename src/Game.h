@@ -34,10 +34,9 @@ namespace Pong
         std::unique_ptr<Ball> ball_;
 
         bool is_running_ = false;
-        const int FRAME_RATE = 60;
 
     private:
-        void Run();
+        void Update();
         void Render();
         void Initialize();
         void Shutdown() const;
@@ -46,7 +45,7 @@ namespace Pong
 
     public:
         Game() noexcept;
-        void Update();
+        void Run();
     };
 
 } // namespace Pong

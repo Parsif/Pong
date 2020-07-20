@@ -17,7 +17,7 @@ namespace Pong
         float x_ratio_, y_ratio_;     // TODO: try to fix this
 
     private:
-        void CheckColission();
+        bool IsCollided();
         void ApplyColission();
 
 

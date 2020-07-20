@@ -9,7 +9,7 @@ endif
 OBJECTS = src/main.cpp src/Game.cpp src/utils/Logger.cpp src/Field.cpp
 LIBRARY_PATHS = 
 
-COMPILER_FLAGS = -g -Wall
+COMPILER_FLAGS = -g -Wall -std=c++17
 INCLUDE_PATHS = -Isrc/utils 
 OUTPUT = -o bin/Pong
 CC = g++ 

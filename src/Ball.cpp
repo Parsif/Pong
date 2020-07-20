@@ -16,7 +16,7 @@ namespace Pong
         x_ratio_ = rect_.x / static_cast<float>(window_width);
         y_ratio_ = rect_.y / static_cast<float>(window_height);
 
-        velocity_x_ = 1;
+        velocity_x_ = 2;
     }
 
     void Ball::OnWindowResize()
@@ -29,7 +29,6 @@ namespace Pong
 
         rect_.x = window_width * x_ratio_;  // TODO: fix magic number
         rect_.y = window_height * y_ratio_; // TODO: fix magic number
-        std::cout << "Ball position: " << rect_.x << '\n';
     }
 
     void Ball::Draw()
@@ -49,7 +48,7 @@ namespace Pong
         rect_.y += velocity_y_;
     }
 
-    void Ball::CheckColission()
+    bool Ball::IsCollided()
     {
     }
 
