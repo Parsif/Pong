@@ -16,11 +16,13 @@ namespace Pong
         constexpr uint32_t FRAME_DURATION = 1000 / FPS;
         uint32_t current_frame_time = SDL_GetTicks();
         uint32_t next_frame_time = 0;
+        
 
         while (is_running_)
         {
             if (current_frame_time >= next_frame_time)
             {
+                collider_->Collide(player1_, player2_, ball_);
                 ball_->Move();
                 HandleInput();
                 Render();
@@ -38,8 +40,8 @@ namespace Pong
     void Game::Render()
     {
         field_->Draw();
-        human_player_->Draw();
-        ai_player_->Draw();
+        player1_->Draw();
+        player2_->Draw();
         ball_->Draw();
     }
 
@@ -63,8 +65,8 @@ namespace Pong
                 if (event.window.event == SDL_WINDOWEVENT_RESIZED)
                 {
                     field_->OnWindowResize();
-                    human_player_->OnWindowResize();
-                    ai_player_->OnWindowResize();
+                    player1_->OnWindowResize();
+                    player2_->OnWindowResize();
                     ball_->OnWindowResize();
                 }
                 break;
@@ -72,11 +74,11 @@ namespace Pong
             case SDL_KEYDOWN:
                 if (event.key.keysym.scancode == SDL_SCANCODE_UP)
                 {
-                    human_player_->MoveUp();
+                    player1_->MoveUp();
                 }
                 else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN)
                 {
-                    human_player_->MoveDown();
+                    player1_->MoveDown();
                 }
                 break;
 
@@ -109,9 +111,10 @@ namespace Pong
         }
 
         field_ = std::make_unique<Field>(window_, renderer_);
-        human_player_ = std::make_unique<HumanPlayer>(window_, renderer_);
-        ai_player_ = std::make_unique<AIPlayer>(window_, renderer_);
+        player1_ = std::make_unique<HumanPlayer>(window_, renderer_);
+        player2_ = std::make_unique<AIPlayer>(window_, renderer_);
         ball_ = std::make_unique<Ball>(window_, renderer_);
+        collider_ = std::make_unique<Collider>(window_);
 
         is_running_ = true;
     }

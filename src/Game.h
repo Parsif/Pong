@@ -8,6 +8,7 @@
 #include "HumanPlayer.h"
 #include "AIPlayer.h"
 #include "Ball.h"
+#include "Collider.h"
 
 namespace Pong
 {
@@ -29,9 +30,11 @@ namespace Pong
         WindowParams window_params_;
         SDL_Renderer *renderer_;
         std::unique_ptr<Field> field_;
-        std::unique_ptr<HumanPlayer> human_player_;
-        std::unique_ptr<AIPlayer> ai_player_;
+        std::unique_ptr<Player> player1_;
+        std::unique_ptr<Player> player2_;
         std::unique_ptr<Ball> ball_;
+        std::unique_ptr<Collider> collider_;
+
 
         bool is_running_ = false;
 

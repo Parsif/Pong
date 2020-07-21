@@ -42,4 +42,9 @@ namespace Pong
         rect_.y = window_height * y_ratio_; // TODO: fix magic number
     }
 
+    SDL_Rect Player::GetRect() const
+    {
+        return rect_;
+    }
+
 } // namespace Pong

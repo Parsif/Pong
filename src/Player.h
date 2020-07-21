@@ -11,7 +11,7 @@ namespace Pong
         virtual void MoveUp() = 0;
         virtual void MoveDown() = 0;
         void OnWindowResize();
-        auto GetRect() const;
+        SDL_Rect GetRect() const;
 
     protected:
         Player(SDL_Window *window, SDL_Renderer *renderer, bool located_left);
@@ -21,7 +21,7 @@ namespace Pong
         SDL_Window *window_;
         SDL_Renderer *renderer_;
 
-        const int SPEED_ = 20;
+        const int VELOCITY_ = 20;
         const int scale_width_ = 100, scale_height_ = 5; // TODO: try to fix this
         float y_ratio_, x_ratio_; // TODO: try to fix this
     };

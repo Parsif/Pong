@@ -12,9 +12,9 @@ namespace Pong
     {
         int window_width, window_height;
         SDL_GetWindowSize(window_, &window_width, &window_height);
-        if (rect_.y - SPEED_ >= 0)
+        if (rect_.y - VELOCITY_ >= 0)
         {
-            rect_.y -= SPEED_;
+            rect_.y -= VELOCITY_;
         }
 
         y_ratio_ = rect_.y / static_cast<float>(window_height);
@@ -24,9 +24,9 @@ namespace Pong
     {
         int window_width, window_height;
         SDL_GetWindowSize(window_, &window_width, &window_height);
-        if (rect_.y + rect_.h + SPEED_ <= window_height)
+        if (rect_.y + rect_.h + VELOCITY_ <= window_height)
         {
-            rect_.y += SPEED_;
+            rect_.y += VELOCITY_;
         }
 
         y_ratio_ = rect_.y / static_cast<float>(window_height);
