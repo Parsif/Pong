@@ -28,7 +28,7 @@ namespace Pong
             BallPlayerColiission(player2, ball);
         }
 
-        if (ball_rect.y <= 0 || ball_rect.y + ball_rect.h > window_height)
+        if (ball_rect.y <= 0 || ball_rect.y + ball_rect.h > window_height) // hits the wall top or bottom side
         {
             ball->velocity_y_ = -ball->velocity_y_;
         }
@@ -38,12 +38,9 @@ namespace Pong
     {
         int player_y_center = player->GetRect().y + player->GetRect().h / 2;
         int ball_y_center = ball->GetRect().y + ball->GetRect().h / 2;
+        const float angle_coefficient = 0.1f;
+        ball->velocity_y_ += (player_y_center - ball_y_center) * angle_coefficient;
         ball->velocity_x_ = -ball->velocity_x_;
-        ball->velocity_y_ += (player_y_center - ball_y_center) * 0.1;
-    }
-
-    void Collider::BallWindowColiission(std::unique_ptr<Ball> &ball)
-    {
     }
 
     bool Collider::IsGoalScored(std::unique_ptr<Ball> &ball)

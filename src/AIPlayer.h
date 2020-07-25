@@ -7,11 +7,9 @@ namespace Pong
     {
     public:
         AIPlayer(SDL_Window *window, SDL_Renderer *renderer);
-        void MoveUp() override;
-        void MoveDown() override;
+        void Move(SDL_Rect ball_rect);    
 
-    private:
-        void MakeDecision();
+    
     };
 
 } // namespace Pong

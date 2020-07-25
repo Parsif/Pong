@@ -8,8 +8,6 @@ namespace Pong
     {
     public:
         void Draw();
-        virtual void MoveUp() = 0;
-        virtual void MoveDown() = 0;
         void OnWindowResize();
         SDL_Rect GetRect() const;
 

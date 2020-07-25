@@ -14,7 +14,6 @@ namespace Pong
 
     private:
         void BallPlayerColiission(std::unique_ptr<Player> &player, std::unique_ptr<Ball> &ball);
-        void BallWindowColiission(std::unique_ptr<Ball> &ball);
 
 
     public:

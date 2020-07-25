@@ -19,7 +19,7 @@ namespace Pong
 
         y_ratio_ = rect_.y / static_cast<float>(window_height);
     }
-
+ 
     void HumanPlayer::MoveDown()
     {
         int window_width, window_height;

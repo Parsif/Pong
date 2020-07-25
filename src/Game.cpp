@@ -7,7 +7,32 @@ namespace Pong
 {
     Game::Game() noexcept
     {
-        Initialize();
+         if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+        {
+            Logger::LogoutError("SDL init error");
+        }
+        window_ = SDL_CreateWindow(window_params_.title, window_params_.x_pos, window_params_.y_pos,
+                                   window_params_.min_width, window_params_.min_height, SDL_WINDOW_RESIZABLE);
+        if (window_ == nullptr)
+        {
+            Logger::LogoutError("Window creation error");
+        }
+
+        SDL_SetWindowMinimumSize(window_, window_params_.min_width, window_params_.min_height);
+
+        renderer_ = SDL_CreateRenderer(window_, -1, 0);
+        if (renderer_ == nullptr)
+        {
+            Logger::LogoutError("Fail to init renderer");
+        }
+
+        field_ = std::make_unique<Field>(window_, renderer_);
+        player1_ = std::make_unique<HumanPlayer>(window_, renderer_);
+        player2_ = std::make_unique<AIPlayer>(window_, renderer_);
+        ball_ = std::make_unique<Ball>(window_, renderer_);
+        collider_ = std::make_unique<Collider>(window_);
+
+        is_running_ = true;
     }
 
     void Game::Run()
@@ -23,7 +48,9 @@ namespace Pong
             if (current_frame_time >= next_frame_time)
             {
                 collider_->Collide(player1_, player2_, ball_);
+                //player2_->Move();
                 ball_->Move();
+
                 HandleInput();
                 Render();
                 Update();
@@ -88,36 +115,7 @@ namespace Pong
         }
     }
 
-    void Game::Initialize()
-    {
-        if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-        {
-
-            Logger::LogoutError("SDL init error");
-        }
-        window_ = SDL_CreateWindow(window_params_.title, window_params_.x_pos, window_params_.y_pos,
-                                   window_params_.min_width, window_params_.min_height, SDL_WINDOW_RESIZABLE);
-        if (window_ == nullptr)
-        {
-            Logger::LogoutError("window creation error");
-        }
-
-        SDL_SetWindowMinimumSize(window_, window_params_.min_width, window_params_.min_height);
-
-        renderer_ = SDL_CreateRenderer(window_, -1, 0);
-        if (renderer_ == nullptr)
-        {
-            Logger::LogoutError("Fail to init renderer");
-        }
-
-        field_ = std::make_unique<Field>(window_, renderer_);
-        player1_ = std::make_unique<HumanPlayer>(window_, renderer_);
-        player2_ = std::make_unique<AIPlayer>(window_, renderer_);
-        ball_ = std::make_unique<Ball>(window_, renderer_);
-        collider_ = std::make_unique<Collider>(window_);
-
-        is_running_ = true;
-    }
+  
 
     void Game::Shutdown() const
     {
