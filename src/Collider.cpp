@@ -6,13 +6,13 @@ namespace Pong
 {
     Collider::Collider(SDL_Window *window) : window_(window) {}
 
-    void Collider::Collide(std::unique_ptr<Player> &player1, std::unique_ptr<Player> &player2, std::unique_ptr<Ball> &ball)
+    void Collider::Collide(const Player &player1, const Player &player2, Ball &ball)
     {
         int window_width, window_height;
         SDL_GetWindowSize(window_, &window_width, &window_height);
-        auto ball_rect = ball->GetRect();
+        auto ball_rect = ball.GetRect();
 
-        auto player1_rect = player1->GetRect();
+        auto player1_rect = player1.GetRect();
         if (ball_rect.x > player1_rect.x && ball_rect.x < player1_rect.x + player1_rect.w &&
             ((ball_rect.y > player1_rect.y && ball_rect.y < player1_rect.y + player1_rect.h) ||                            // Either ball top edge should be touch player
              (ball_rect.y + ball_rect.h > player1_rect.y && ball_rect.y + ball_rect.h < player1_rect.y + player1_rect.h))) // or bottom one
@@ -20,7 +20,7 @@ namespace Pong
             BallPlayerColiission(player1, ball);
         }
 
-        auto player2_rect = player2->GetRect();
+        auto player2_rect = player2.GetRect();
         if (ball_rect.x + ball_rect.w > player2_rect.x && ball_rect.x + ball_rect.w < player2_rect.x + player2_rect.w &&
             ((ball_rect.y > player2_rect.y && ball_rect.y < player2_rect.y + player2_rect.h) ||                            // Either ball top edge should be touch player
              (ball_rect.y + ball_rect.h > player2_rect.y && ball_rect.y + ball_rect.h < player2_rect.y + player2_rect.h))) // or bootom one
@@ -30,24 +30,24 @@ namespace Pong
 
         if (ball_rect.y <= 0 || ball_rect.y + ball_rect.h > window_height) // hits the wall top or bottom side
         {
-            ball->velocity_y_ = -ball->velocity_y_;
+            ball.velocity_y_ = -ball.velocity_y_;
         }
     }
 
-    void Collider::BallPlayerColiission(std::unique_ptr<Player> &player, std::unique_ptr<Ball> &ball)
+    void Collider::BallPlayerColiission(const Player &player, Ball &ball)
     {
-        int player_y_center = player->GetRect().y + player->GetRect().h / 2;
-        int ball_y_center = ball->GetRect().y + ball->GetRect().h / 2;
+        int player_y_center = player.GetRect().y + player.GetRect().h / 2;
+        int ball_y_center = ball.GetRect().y + ball.GetRect().h / 2;
         const float angle_coefficient = 0.1f;
-        ball->velocity_y_ += (player_y_center - ball_y_center) * angle_coefficient;
-        ball->velocity_x_ = -ball->velocity_x_;
+        ball.velocity_y_ += (player_y_center - ball_y_center) * angle_coefficient;
+        ball.velocity_x_ = -ball.velocity_x_;
     }
 
-    bool Collider::IsGoalScored(std::unique_ptr<Ball> &ball)
+    bool Collider::IsGoalScored(const Ball &ball)
     {
         int window_width, window_height;
         SDL_GetWindowSize(window_, &window_width, &window_height);
-        auto ball_rect = ball->GetRect();
+        auto ball_rect = ball.GetRect();
 
         if (ball_rect.x <= 0)
         {

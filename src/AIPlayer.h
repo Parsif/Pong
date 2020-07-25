@@ -7,9 +7,7 @@ namespace Pong
     {
     public:
         AIPlayer(SDL_Window *window, SDL_Renderer *renderer);
-        void Move(SDL_Rect ball_rect);    
-
-    
+        void Move(const SDL_Rect &&ball_rect);
     };
 
 } // namespace Pong

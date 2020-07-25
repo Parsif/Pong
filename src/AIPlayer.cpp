@@ -8,10 +8,11 @@ namespace Pong
     {
     }
 
-    void AIPlayer::Move(SDL_Rect ball_rect)
+    void AIPlayer::Move(const SDL_Rect &&ball_rect)
     {
         int ball_y_center = ball_rect.y + ball_rect.h / 2;
         int player_y_center = rect_.y + rect_.h / 2;
+        
     }
 
 } // namespace Pong

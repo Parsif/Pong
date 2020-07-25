@@ -23,12 +23,14 @@ HUMAN_PLAYER_O = build/HumanPlayer.o
 AI_PLAYER_O = build/AIPlayer.o
 BALL_O = build/Ball.o
 COLLIDER_O = build/Collider.o
+SDL_VARS_O = build/SDL_Vars.o
+
 
 
 all: build run
 
-build: $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(AI_PLAYER_O) $(BALL_O) $(COLLIDER_O)
-	$(CC) $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(AI_PLAYER_O) $(BALL_O) $(COLLIDER_O) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LIBRARY_NAMES) $(OUTPUT)
+build: $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(AI_PLAYER_O) $(BALL_O) $(COLLIDER_O) $(SDL_VARS_O)
+	$(CC) $(MAIN_O) $(GAME_O) $(LOGGER_O) $(FIELD_O) $(PLAYER_O) $(HUMAN_PLAYER_O) $(AI_PLAYER_O) $(BALL_O) $(COLLIDER_O) $(SDL_VARS_O) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LIBRARY_NAMES) $(OUTPUT)
 
 $(MAIN_O): src/main.cpp
 	$(CC) $(INCLUDE_PATHS) -c src/main.cpp -o $(MAIN_O) 
@@ -56,6 +58,10 @@ $(BALL_O): src/Ball.cpp
 
 $(COLLIDER_O): src/Collider.cpp
 	$(CC) $(INCLUDE_PATHS) -c src/Collider.cpp -o $(COLLIDER_O)
+
+$(SDL_VARS_O): src/SDL_Vars.cpp
+	$(CC) $(INCLUDE_PATHS) -c src/SDL_Vars.cpp -o $(SDL_VARS_O)
+
 
 clean:
 	$(CLEAN_COMMAND)

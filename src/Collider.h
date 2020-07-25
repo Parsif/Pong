@@ -13,13 +13,13 @@ namespace Pong
         SDL_Window *window_;
 
     private:
-        void BallPlayerColiission(std::unique_ptr<Player> &player, std::unique_ptr<Ball> &ball);
+        void BallPlayerColiission(const Player &player, Ball &ball);
 
 
     public:
         Collider(SDL_Window *window);
-        void Collide(std::unique_ptr<Player> &player1, std::unique_ptr<Player> &player2, std::unique_ptr<Ball> &ball);
-        bool IsGoalScored(std::unique_ptr<Ball> &ball);
+        void Collide(const Player &player1, const Player &player2, Ball &ball);
+        bool IsGoalScored(const Ball &ball);
     };
 
 } // namespace Pong
