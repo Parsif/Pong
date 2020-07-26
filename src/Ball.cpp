@@ -6,17 +6,7 @@ namespace Pong
 {
     Ball::Ball(SDL_Window *window, SDL_Renderer *renderer) : window_(window), renderer_(renderer)
     {
-        int window_width, window_height;
-        SDL_GetWindowSize(window_, &window_width, &window_height);
-
-        rect_.w = rect_.h = (window_height + window_width) / scale_size_;
-        rect_.x = window_width / 2 - (rect_.w / 2);
-        rect_.y = window_height / 2 - (rect_.h / 2);
-
-        x_ratio_ = rect_.x / static_cast<float>(window_width);
-        y_ratio_ = rect_.y / static_cast<float>(window_height);
-
-        velocity_x_ = 3;
+        Reset();
     }
 
     void Ball::OnWindowResize()
@@ -38,13 +28,29 @@ namespace Pong
 
     void Ball::Move()
     {
-        rect_.x += velocity_x_;
-        rect_.y += velocity_y_;
+        rect_.x += velocity_x;
+        rect_.y += velocity_y;
     }
 
     SDL_Rect Ball::GetRect() const
     {
         return rect_;
+    }
+
+    void Ball::Reset()
+    {
+        int window_width, window_height;
+        SDL_GetWindowSize(window_, &window_width, &window_height);
+
+        rect_.w = rect_.h = (window_height + window_width) / scale_size_;
+        rect_.x = window_width / 2 - (rect_.w / 2);
+        rect_.y = window_height / 2 - (rect_.h / 2);
+
+        x_ratio_ = rect_.x / static_cast<float>(window_width);
+        y_ratio_ = rect_.y / static_cast<float>(window_height);
+
+        velocity_x = 3;
+        velocity_y = 0;
     }
 
 } // namespace Pong

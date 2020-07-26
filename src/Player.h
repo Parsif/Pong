@@ -10,6 +10,10 @@ namespace Pong
         void Draw();
         void OnWindowResize();
         SDL_Rect GetRect() const;
+        void Reset();
+
+    public:
+        uint32_t score = 0;
 
     protected:
         Player(SDL_Window *window, SDL_Renderer *renderer, bool located_left);
@@ -21,7 +25,10 @@ namespace Pong
 
         const int VELOCITY_ = 35;
         const int scale_width_ = 100, scale_height_ = 5; // TODO: try to fix this
-        float y_ratio_, x_ratio_; // TODO: try to fix this
+        float y_ratio_, x_ratio_;                        // TODO: try to fix this
+
+    private:
+        bool located_left_;
     };
 
-} // namespace Pong 
+} // namespace Pong

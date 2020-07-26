@@ -21,9 +21,10 @@ namespace Pong
         void Draw();
         void Move();
         SDL_Rect GetRect() const;
+        void Reset();
 
     public:
-        int velocity_x_ = 0; // should be scaled on risize
-        int velocity_y_ = 0;
+        int velocity_x; // should be scaled on risize
+        int velocity_y;
     };
 } // namespace Pong

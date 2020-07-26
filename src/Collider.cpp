@@ -30,7 +30,7 @@ namespace Pong
 
         if (ball_rect.y <= 0 || ball_rect.y + ball_rect.h > window_height) // hits the wall top or bottom side
         {
-            ball.velocity_y_ = -ball.velocity_y_;
+            ball.velocity_y = -ball.velocity_y;
         }
     }
 
@@ -38,12 +38,12 @@ namespace Pong
     {
         int player_y_center = player.GetRect().y + player.GetRect().h / 2;
         int ball_y_center = ball.GetRect().y + ball.GetRect().h / 2;
-        const float angle_coefficient = 0.1f;
-        ball.velocity_y_ += (player_y_center - ball_y_center) * angle_coefficient;
-        ball.velocity_x_ = -ball.velocity_x_;
+        const float angle_coefficient = 0.07f;
+        ball.velocity_y += (player_y_center - ball_y_center) * angle_coefficient;
+        ball.velocity_x = -ball.velocity_x;
     }
 
-    bool Collider::IsGoalScored(const Ball &ball)
+    bool Collider::IsGoalScored(const Ball &ball, Player& player1, Player &player2) // TODO: move to a new class
     {
         int window_width, window_height;
         SDL_GetWindowSize(window_, &window_width, &window_height);
@@ -51,12 +51,12 @@ namespace Pong
 
         if (ball_rect.x <= 0)
         {
-            std::cout << "Player2 scored goal" << '\n';
+            player2.score++;
             return true;
         }
         else if (ball_rect.x + ball_rect.w >= window_width)
         {
-            std::cout << "Player1 scored goal" << '\n';
+            player1.score++;
             return true;
         }
         return false;

@@ -25,7 +25,10 @@ namespace Pong
                 collider_.Collide(player1_, player2_, ball_);
                 ball_.Move();
                 player2_.Move(ball_);
-
+                if(collider_.IsGoalScored(ball_, player1_, player2_))
+                {
+                    Reset();
+                }
                 HandleInput();
                 Render();
                 Update();
@@ -89,6 +92,13 @@ namespace Pong
                 break;
             }
         }
+    }
+
+    void Game::Reset()
+    {
+        player1_.Reset();
+        player2_.Reset();
+        ball_.Reset();
     }
 
     void Game::Shutdown() const

@@ -29,6 +29,7 @@ namespace Pong
     private:
         void Update();
         void Render();
+        void Reset();
         void Initialize();
         void Shutdown() const;
         void HandleInput();

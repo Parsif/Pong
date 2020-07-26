@@ -3,25 +3,9 @@
 
 namespace Pong
 {
-    Player::Player(SDL_Window *window, SDL_Renderer *renderer, bool located_left) : window_(window), renderer_(renderer)
+    Player::Player(SDL_Window *window, SDL_Renderer *renderer, bool located_left) : window_(window), renderer_(renderer), located_left_(located_left)
     {
-        int window_width, window_height;
-        SDL_GetWindowSize(window_, &window_width, &window_height);
-
-        rect_.h = window_height / scale_height_;
-        rect_.w = window_width / scale_width_;
-        rect_.y = window_height * 2 / scale_height_; // TODO: fix magic number
-        if (located_left)
-        {
-            rect_.x = window_width - window_width * 0.9; // TODO: fix magic number
-        }
-        else
-        {
-            rect_.x = window_width - window_width * 0.1 - rect_.w; // TODO: fix magic number
-        }
-
-        x_ratio_ = rect_.x / static_cast<float>(window_width);
-        y_ratio_ = rect_.y / static_cast<float>(window_height);
+        Reset();
     }
 
     void Player::Draw()
@@ -45,6 +29,27 @@ namespace Pong
     SDL_Rect Player::GetRect() const
     {
         return rect_;
+    }
+
+    void Player::Reset()
+    {
+        int window_width, window_height;
+        SDL_GetWindowSize(window_, &window_width, &window_height);
+
+        rect_.h = window_height / scale_height_;
+        rect_.w = window_width / scale_width_;
+        rect_.y = window_height * 2 / scale_height_; // TODO: fix magic number
+        if (located_left_)
+        {
+            rect_.x = window_width - window_width * 0.9; // TODO: fix magic number
+        }
+        else
+        {
+            rect_.x = window_width - window_width * 0.1 - rect_.w; // TODO: fix magic number
+        }
+
+        x_ratio_ = rect_.x / static_cast<float>(window_width);
+        y_ratio_ = rect_.y / static_cast<float>(window_height);
     }
 
 } // namespace Pong

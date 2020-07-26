@@ -15,11 +15,10 @@ namespace Pong
     private:
         void BallPlayerColiission(const Player &player, Ball &ball);
 
-
     public:
         Collider(SDL_Window *window);
         void Collide(const Player &player1, const Player &player2, Ball &ball);
-        bool IsGoalScored(const Ball &ball);
+        bool IsGoalScored(const Ball &ball, Player &player1, Player &player2);
     };
 
 } // namespace Pong
