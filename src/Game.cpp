@@ -6,7 +6,7 @@
 namespace Pong
 {
     Game::Game() noexcept : field_(sdl_vars_.window, sdl_vars_.renderer), player1_(sdl_vars_.window, sdl_vars_.renderer),
-                            player2_(sdl_vars_.window, sdl_vars_.renderer), ball_(sdl_vars_.window, sdl_vars_.renderer), 
+                            player2_(sdl_vars_.window, sdl_vars_.renderer), ball_(sdl_vars_.window, sdl_vars_.renderer),
                             collider_(sdl_vars_.window), is_running_(true)
     {
     }
@@ -23,8 +23,8 @@ namespace Pong
             if (current_frame_time >= next_frame_time)
             {
                 collider_.Collide(player1_, player2_, ball_);
-                player2_.Move(ball_.GetRect());
                 ball_.Move();
+                player2_.Move(ball_);
 
                 HandleInput();
                 Render();
